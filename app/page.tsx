@@ -1,21 +1,21 @@
-import fs, { PathLike, ReadStream } from 'fs'
+import fs from 'fs'
 import Link from 'next/link'
 
-const getPostMetadata = () => {
-  const folder = 'posts/'
-  const files = fs.readdirSync(folder)
-  const mdPosts = files.filter((file) => file.endsWith('.md'))
-  const slugs = mdPosts.map((file) => file.replace('md', ''))
-  return slugs
+const getPosts = () => {
+    const posts = fs.readdirSync('posts/')
+    const files = posts.filter((file) => file.endsWith('.md'))
+    const printFiles = files.map((file) => file.replace('.md', ''))
+    return printFiles
 }
+
 export default function Home() {
-  const postMetadata = getPostMetadata()
-  const postPreviews = postMetadata.map((slug) => {
-    <div>
-      <Link href={`./posts/${slug}`}>
-        <h2>{slug}</h2>
-      </Link>
-    </div>
-  })
-  return (<>{postPreviews}</>)
+    const postMetadata = getPosts()
+    const postPreviews = postMetadata.map((slug) => (
+        <div>
+            <Link href={`/posts/${slug}`}>
+                <h2>{slug}</h2>
+            </Link>
+        </div>
+    ))
+    return <div>{postPreviews}</div>
 }
