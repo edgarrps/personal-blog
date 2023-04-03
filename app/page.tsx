@@ -2,10 +2,10 @@ import fs from 'fs'
 import Link from 'next/link'
 
 const getPosts = () => {
-    const posts = fs.readdirSync('posts/')
-    const files = posts.filter((file) => file.endsWith('.md'))
-    const printFiles = files.map((file) => file.replace('.md', ''))
-    return printFiles
+    const files = fs.readdirSync('posts/')
+    const markdownPosts = files.filter((file) => file.endsWith('.md'))
+    const slugs = markdownPosts.map((file) => file.replace('.md', ''))
+    return slugs
 }
 
 export default function Home() {
