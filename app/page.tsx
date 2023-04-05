@@ -6,5 +6,5 @@ export default function Home() {
     const postPreviews = postMetadata.map((post) => (
         <PostPreview key={post.slug} {...post} />
     ))
-    return <div className='grid place-items-center pt-20 pb-10 space-y-2'>{postPreviews}</div>
+    return <div className='pt-20 pb-12 space-y-2'>{postPreviews}</div>
 }
