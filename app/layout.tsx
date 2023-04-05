@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import './globals.css'
 
 export const metadata = {
@@ -14,8 +15,7 @@ export default function RootLayout({
   const header = (
     <header>
       <div>
-        <h1>Personal blog</h1>
-        <p>Welcome!</p>
+        <Link href={'/'}><h1>Personal blog</h1></Link>
       </div>
     </header>
   )
@@ -23,7 +23,7 @@ export default function RootLayout({
   const footer = (
     <footer>
       <div>
-        <p>Developed by Edgar Santos</p>
+        <p>2023</p>
       </div>
     </footer>
   )

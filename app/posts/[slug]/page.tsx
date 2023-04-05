@@ -1,4 +1,5 @@
 import fs from 'fs'
+import Markdown from 'markdown-to-jsx'
 
 const getPostContent = (slug: string) => {
     const file = `posts/${slug}.md`
@@ -11,7 +12,8 @@ const PostPage = (props: any) => {
 
     return (
         <p>
-            <h1>Post! {slug}</h1>
+            <h1>{slug}</h1>
+            <Markdown>{content}</Markdown>
         </p>
     )
 }
