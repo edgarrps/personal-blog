@@ -1,9 +1,8 @@
 import fs from 'fs'
 import matter from 'gray-matter'
-import Link from 'next/link'
 import { PostMetadata } from '@/types/PostMetadata'
 
-const getPosts = (): PostMetadata[] => {
+export default function getPostMetadata(): PostMetadata[] {
     const files = fs.readdirSync('posts/')
     const markdownPosts = files.filter((file) => file.endsWith('.md'))
     const posts = markdownPosts.map((fileName) => {
@@ -18,18 +17,4 @@ const getPosts = (): PostMetadata[] => {
         }
     })
     return posts
-}
-
-export default function Home() {
-    const postMetadata = getPosts()
-    const postPreviews = postMetadata.map((post) => (
-        <div>
-            <Link href={`/posts/${post.slug}`}>
-                <h2>{post.title}</h2>
-            </Link>
-            <p>{post.subtitle}</p>
-            <p>{post.date}</p>
-        </div>
-    ))
-    return <div>{postPreviews}</div>
 }
