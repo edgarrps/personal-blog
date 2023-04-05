@@ -1,17 +1,10 @@
+import PostPreview from '@/components/PostPreview'
 import getPostMetadata from '@/components/getPostMetadata'
-import Link from 'next/link'
-
 
 export default function Home() {
     const postMetadata = getPostMetadata()
     const postPreviews = postMetadata.map((post) => (
-        <div>
-            <Link href={`/posts/${post.slug}`}>
-                <h2>{post.title}</h2>
-            </Link>
-            <p>{post.subtitle}</p>
-            <p>{post.date}</p>
-        </div>
+        <PostPreview key={post.slug} {...post} />
     ))
-    return <div>{postPreviews}</div>
+    return <div className='grid place-items-center pt-20 pb-10 space-y-2'>{postPreviews}</div>
 }
